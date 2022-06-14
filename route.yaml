@@ -1,0 +1,28 @@
+apiVersion: v1
+items:
+- apiVersion: route.openshift.io/v1
+  kind: Route
+  metadata:
+    annotations:
+      openshift.io/host.generated: "true"
+    labels:
+      app: blue
+    name: bluegreen
+    namespace: bluegreen
+  spec:
+    alternateBackends:
+    - kind: Service
+      name: green
+      weight: 0
+    host: bluegreen-bluegreen.apps.ocp.msalakhutdinov.4219967878.workshops.arctiq.ca
+    port:
+      targetPort: 8080
+    to:
+      kind: Service
+      name: blue
+      weight: 100
+    wildcardPolicy: None
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
